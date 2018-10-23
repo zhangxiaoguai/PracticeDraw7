@@ -38,21 +38,40 @@ public class Practice03OfObjectLayout extends RelativeLayout {
         animateBt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                ObjectAnimator animator = ObjectAnimator.ofObject(view, "position",
-                        new PointFEvaluator(), new PointF(0, 0), new PointF(1, 1));
-                animator.setInterpolator(new LinearInterpolator());
-                animator.setDuration(1000);
-                animator.start();
+                // 使用系统自带的PointEvaluator
+//                ObjectAnimator animator = ObjectAnimator.ofObject(view, "position",
+//                        new android.animation.PointFEvaluator(), new PointF(0, 0), new PointF(1, 1));
+//                animator.setInterpolator(new LinearInterpolator());
+//                animator.setDuration(1000);
+//                animator.setEvaluator(new android.animation.PointFEvaluator());
+//                animator.start();
+
+                ObjectAnimator objectAnimator = ObjectAnimator.ofObject(
+                        view,
+                        "position",
+                        new PointFEvaluator(),
+                        new PointF(0, 0),
+                        new PointF(1, 1));
+                objectAnimator.setInterpolator(new LinearInterpolator());
+                objectAnimator.setDuration(1000);
+                objectAnimator.setEvaluator(new PointFEvaluator());
+                objectAnimator.start();
             }
         });
     }
 
     private class PointFEvaluator implements TypeEvaluator<PointF> {
+        PointF newPoint = new PointF();
 
         // 重写 evaluate() 方法，让 PointF 可以作为属性来做动画
         @Override
         public PointF evaluate(float fraction, PointF startValue, PointF endValue) {
-            return startValue;
+            float currentX = startValue.x + (endValue.x - startValue.x) * fraction;
+            float currentY = startValue.y + (endValue.y - startValue.y) * fraction;
+
+            newPoint.set(currentX, currentY);
+
+            return newPoint;
         }
     }
 }

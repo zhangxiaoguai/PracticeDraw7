@@ -13,6 +13,16 @@ import android.view.Menu;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <url>https://zhuanlan.zhihu.com/p/29231600</url>
+ * <p>1.7属性动画进阶篇</p>
+ *
+ * <url>https://zhuanlan.zhihu.com/p/29430145</url>
+ * <p>1.8硬件加速</p>
+ *
+ * <url>https://developer.android.com/guide/topics/graphics/hardware-accel</url>
+ * <p>硬件加速官方介绍</p>
+ */
 public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager pager;
@@ -62,9 +72,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class PageModel {
-        @LayoutRes int sampleLayoutRes;
-        @StringRes int titleRes;
-        @LayoutRes int practiceLayoutRes;
+        @LayoutRes
+        int sampleLayoutRes;
+        @StringRes
+        int titleRes;
+        @LayoutRes
+        int practiceLayoutRes;
 
         PageModel(@LayoutRes int sampleLayoutRes, @StringRes int titleRes, @LayoutRes int practiceLayoutRes) {
             this.sampleLayoutRes = sampleLayoutRes;

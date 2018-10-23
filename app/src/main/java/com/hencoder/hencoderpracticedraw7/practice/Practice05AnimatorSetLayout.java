@@ -38,6 +38,7 @@ public class Practice05AnimatorSetLayout extends RelativeLayout {
             public void onClick(View v) {
                 view.setTranslationX(-200f);
 
+                // 动画的持续时间默认300ms
                 ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "alpha", 0, 1);
                 ObjectAnimator animator2 = ObjectAnimator.ofFloat(view, "translationX", -200, 200);
                 ObjectAnimator animator3 = ObjectAnimator.ofFloat(view, "rotation", 0, 1080);
@@ -47,7 +48,7 @@ public class Practice05AnimatorSetLayout extends RelativeLayout {
                 // 用 AnimatorSet 的方法来让三个动画协作执行
                 // 要求 1： animator1 先执行，animator2 在 animator1 完成后立即开始
                 // 要求 2： animator2 和 animator3 同时开始
-
+                animatorSet.play(animator2).after(animator1).with(animator3);
                 animatorSet.start();
             }
         });

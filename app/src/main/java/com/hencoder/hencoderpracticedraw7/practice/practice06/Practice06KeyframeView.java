@@ -57,10 +57,16 @@ public class Practice06KeyframeView extends View {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(dpToPixel(15));
         arcRectF.set(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
-        canvas.drawArc(arcRectF, 135, progress * 2.7f, false, paint);
+        canvas.drawArc(arcRectF, 135, progress * 3.6f, false, paint);
 
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawText((int) progress + "%", centerX, centerY - (paint.ascent() + paint.descent()) / 2, paint);
+        String text = (int) progress + "%";
+        /**
+         * 由于paint设置textAlign文字对齐方式是中间对齐，所以此处centerX不用再减去measureText长度的一半
+         */
+//        float measureText = paint.measureText(text, 0, text.length());
+        canvas.drawText(text, centerX, centerY - (paint.ascent() + paint.descent()) / 2, paint);
     }
+
 }
